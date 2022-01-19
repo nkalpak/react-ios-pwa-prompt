@@ -23,6 +23,7 @@ export default ({
   copyShareButtonLabel = "1) Press the 'Share' button on the menu bar below.",
   copyAddHomeButtonLabel = "2) Press 'Add to Home Screen'.",
   copyClosePrompt = "Cancel",
+  copyIosChrome = 'You can add this app to your home screen through the Safari browser.',
   delay = 1000,
   debug = false,
   onClose = () => {},
@@ -56,6 +57,7 @@ export default ({
             copyAddHomeButtonLabel={copyAddHomeButtonLabel}
             copyShareButtonLabel={copyShareButtonLabel}
             copyClosePrompt={copyClosePrompt}
+            copyIosChrome={copyIosChrome}
             permanentlyHideOnDismiss={permanentlyHideOnDismiss}
             promptData={promptData}
             maxVisits={timesToShow + promptOnVisit}

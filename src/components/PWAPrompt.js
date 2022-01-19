@@ -12,7 +12,7 @@ const PWAPrompt = ({
   copyAddHomeButtonLabel,
   copyShareButtonLabel,
   copyClosePrompt,
-  copyIosChrome = 'You can add this app to your home screen through the Safari browser.',
+  copyIosChrome,
   permanentlyHideOnDismiss,
   promptData,
   maxVisits,
