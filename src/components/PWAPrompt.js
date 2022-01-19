@@ -12,6 +12,7 @@ const PWAPrompt = ({
   copyAddHomeButtonLabel,
   copyShareButtonLabel,
   copyClosePrompt,
+  copyIosChrome = 'You can add this app to your home screen through the Safari browser.',
   permanentlyHideOnDismiss,
   promptData,
   maxVisits,
@@ -41,6 +42,8 @@ const PWAPrompt = ({
   const isiOS13AndUp = /OS (13|14)/.test(window.navigator.userAgent);
   const visibilityClass = isVisible ? styles.visible : styles.hidden;
   const iOSClass = isiOS13AndUp ? styles.modern : "legacy";
+
+  const isIosChrome = window.navigator.userAgent.match('CriOS') != null;
 
   const dismissPrompt = (evt) => {
     document.body.classList.remove(styles.noScroll);
@@ -108,28 +111,39 @@ const PWAPrompt = ({
           </div>
         </div>
         <div className={`${styles.pwaPromptInstruction} iOSPWA-steps`}>
-          <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step1`}>
-            <ShareIcon
-              className={`${styles.pwaPromptShareIcon} iOSPWA-step1-icon`}
-              modern={isiOS13AndUp}
-            />
+          {isIosChrome ? (
             <p
               className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step1-copy`}
             >
-              {copyShareButtonLabel}
+              {copyIosChrome}
             </p>
-          </div>
-          <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step2`}>
-            <HomeScreenIcon
-              className={`${styles.pwaPromptHomeIcon} iOSPWA-step2-icon`}
-              modern={isiOS13AndUp}
-            />
-            <p
-              className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step2-copy`}
-            >
-              {copyAddHomeButtonLabel}
-            </p>
-          </div>
+          ) : (
+            <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step1`}>
+              <ShareIcon
+                className={`${styles.pwaPromptShareIcon} iOSPWA-step1-icon`}
+                modern={isiOS13AndUp}
+              />
+              <p
+                className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step1-copy`}
+              >
+                {copyShareButtonLabel}
+              </p>
+            </div>
+          )}
+
+          {!isIosChrome && (
+            <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step2`}>
+              <HomeScreenIcon
+                className={`${styles.pwaPromptHomeIcon} iOSPWA-step2-icon`}
+                modern={isiOS13AndUp}
+              />
+              <p
+                className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step2-copy`}
+              >
+                {copyAddHomeButtonLabel}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </Fragment>
