@@ -35,36 +35,34 @@ export default ({
     localStorage.setItem("iosPwaPrompt", JSON.stringify(promptData));
   }
 
-  if (promptData.isiOS || debug) {
-    const aboveMinVisits = promptData.visits + 1 >= promptOnVisit;
-    const belowMaxVisits = promptData.visits + 1 < promptOnVisit + timesToShow;
+  const aboveMinVisits = promptData.visits + 1 >= promptOnVisit;
+  const belowMaxVisits = promptData.visits + 1 < promptOnVisit + timesToShow;
 
-    if (belowMaxVisits || debug) {
-      localStorage.setItem(
-        "iosPwaPrompt",
-        JSON.stringify({
-          ...promptData,
-          visits: promptData.visits + 1,
-        })
+  if (belowMaxVisits || debug) {
+    localStorage.setItem(
+      "iosPwaPrompt",
+      JSON.stringify({
+        ...promptData,
+        visits: promptData.visits + 1,
+      })
+    );
+
+    if (aboveMinVisits || debug) {
+      return (
+        <PWAPrompt
+          delay={delay}
+          copyTitle={copyTitle}
+          copyBody={copyBody}
+          copyAddHomeButtonLabel={copyAddHomeButtonLabel}
+          copyShareButtonLabel={copyShareButtonLabel}
+          copyClosePrompt={copyClosePrompt}
+          copyIosChrome={copyIosChrome}
+          permanentlyHideOnDismiss={permanentlyHideOnDismiss}
+          promptData={promptData}
+          maxVisits={timesToShow + promptOnVisit}
+          onClose={onClose}
+        />
       );
-
-      if (aboveMinVisits || debug) {
-        return (
-          <PWAPrompt
-            delay={delay}
-            copyTitle={copyTitle}
-            copyBody={copyBody}
-            copyAddHomeButtonLabel={copyAddHomeButtonLabel}
-            copyShareButtonLabel={copyShareButtonLabel}
-            copyClosePrompt={copyClosePrompt}
-            copyIosChrome={copyIosChrome}
-            permanentlyHideOnDismiss={permanentlyHideOnDismiss}
-            promptData={promptData}
-            maxVisits={timesToShow + promptOnVisit}
-            onClose={onClose}
-          />
-        );
-      }
     }
   }
 

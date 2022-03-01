@@ -106,44 +106,9 @@ const PWAPrompt = ({
               id="pwa-prompt-description"
               className={`${styles.pwaPromptCopy} iOSPWA-description-copy`}
             >
-              {copyBody}
+              {isIosChrome ? copyIosChrome : copyBody}
             </p>
           </div>
-        </div>
-        <div className={`${styles.pwaPromptInstruction} iOSPWA-steps`}>
-          {isIosChrome ? (
-            <p
-              className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step1-copy`}
-            >
-              {copyIosChrome}
-            </p>
-          ) : (
-            <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step1`}>
-              <ShareIcon
-                className={`${styles.pwaPromptShareIcon} iOSPWA-step1-icon`}
-                modern={isiOS13AndUp}
-              />
-              <p
-                className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step1-copy`}
-              >
-                {copyShareButtonLabel}
-              </p>
-            </div>
-          )}
-
-          {!isIosChrome && (
-            <div className={`${styles.pwaPromptInstructionStep} iOSPWA-step2`}>
-              <HomeScreenIcon
-                className={`${styles.pwaPromptHomeIcon} iOSPWA-step2-icon`}
-                modern={isiOS13AndUp}
-              />
-              <p
-                className={`${styles.pwaPromptCopy} ${styles.bold} iOSPWA-step2-copy`}
-              >
-                {copyAddHomeButtonLabel}
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </Fragment>
